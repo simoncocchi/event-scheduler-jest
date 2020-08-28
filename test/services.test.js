@@ -48,10 +48,15 @@ describe("Event Service",()=> {
         expect(eventService.getLongestEvent()).toStrictEqual(new Event(new Date('2018-12-17T03:24:00'),new Date('1995-12-17T03:24:00'),"First event","Campus Numerique","This is an hello world.."));
     })
 
-    test('hasEventOn shall return the event still on', async () => {
+    test('getShortestEvent shall return the shortest event', async () => {
         let eventService = new EventService(new EventRepository());
-        var date = new Date().toISOString();
-        expect(eventService.hasEventOn(date)).toStrictEqual(new Event(new Date('2020-04-01T09:00:00'),new Date('2020-04-01T17:00:00'),"Unit test againt","Campus Numerique","This is an hello world.."));
+        expect(eventService.getShortestEvent()).toStrictEqual(new Event(new Date('2020-04-01T09:00:00'),new Date('2020-04-01T17:00:00'),"Unit test againt","Campus Numerique","This is an hello world.."));
     })
+
+    // test('hasEventOn shall return the event still on', async () => {
+    //     let eventService = new EventService(new EventRepository());
+    //     var date = new Date().toISOString();
+    //     expect(eventService.hasEventOn(date)).toStrictEqual(new Event(new Date('2020-04-01T09:00:00'),new Date('2020-04-01T17:00:00'),"Unit test againt","Campus Numerique","This is an hello world.."));
+    // })
 
 });
