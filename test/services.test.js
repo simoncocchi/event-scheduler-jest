@@ -33,9 +33,25 @@ describe("Event Service",()=> {
         expect(eventService.getEvents().length).toBe(3);
     })
 
-    test('getEvents shall return the first event', async () => {
+    test('getFirstEvent shall return the first event', async () => {
         let eventService = new EventService(new EventRepository());
         expect(eventService.getFirstEvent().getStartTime()).toStrictEqual(new Date('1995-12-17T03:24:00'));
+    })
+
+    test('getLastEvent shall return the last event', async () => {
+        let eventService = new EventService(new EventRepository());
+        expect(eventService.getLastEvent().getStartTime()).toStrictEqual(new Date('2020-04-01T09:00:00'));
+    })
+
+    test('getLongestEvent shall return the longuest event', async () => {
+        let eventService = new EventService(new EventRepository());
+        expect(eventService.getLongestEvent()).toStrictEqual(new Event(new Date('2018-12-17T03:24:00'),new Date('1995-12-17T03:24:00'),"First event","Campus Numerique","This is an hello world.."));
+    })
+
+    test('hasEventOn shall return the event still on', async () => {
+        let eventService = new EventService(new EventRepository());
+        var date = new Date().toISOString();
+        expect(eventService.hasEventOn(date)).toStrictEqual(new Event(new Date('2020-04-01T09:00:00'),new Date('2020-04-01T17:00:00'),"Unit test againt","Campus Numerique","This is an hello world.."));
     })
 
 });
